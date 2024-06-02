@@ -22,7 +22,7 @@
           default = pkgs.callPackage ./vide.nix {
             inherit pkgs;
             zjstatus = zjstatusForAllSystems pkgs.system;
-          };
+           };
         });
 
         apps = forAllSystems (pkgs: {

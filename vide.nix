@@ -2,26 +2,22 @@
 , pkgs
 , lib
 , writeShellScript
-, zellij
 , callPackage
 
 , zjstatus
 }:
 
 let
-  zellijConfig = callPackage ./zellij { inherit zjstatus; };
+  zellijConfig = callPackage ./zellij.nix { inherit zjstatus; };
 in
   stdenv.mkDerivation rec {
     name = "vide";
 
-    buildInputs = [ zellij zellijConfig ];
+    buildInputs = [ pkgs.zellij zellijConfig ];
 
     src = writeShellScript "vide" ''
-      export ZELLIJ_CONFIG_FILE=${zellijConfig}/share/zellij/config.kdl
-      echo ${zellijConfig}
-      echo ${zjstatus}
-      echo ${zellij}
-      ${zellij}/bin/zellij
+      export ZELLIJ_CONFIG_DIR=${zellijConfig}/share/zellij/
+      ${pkgs.zellij}/bin/zellij
     '';
 
     installPhase = ''
@@ -33,7 +29,7 @@ in
     dontUnpack = true;
 
     meta = {
-      description = "A Nix-powered modal IDE composed of individual tools.";
+      description = "Nix-powered modal IDE composed of individual tools.";
       homepage = "https://github.com/lokasku/vide";
       mainProgram = "vide";
     };
