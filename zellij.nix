@@ -11,7 +11,6 @@ let
     bg = "#161616";
     black = "#000000";
     red = "#ff6961";
-    # green = "#0cff86";
     green = "#636363";
     yellow = "#fff261";
     blue = "#9b99ff";
@@ -104,9 +103,9 @@ let
             tab_active_fullscreen   "#[fg=${colors.gray0},italic] {name} {fullscreen_indicator}"
             tab_active_sync         "#[fg=${colors.gray0},italic] {name} {sync_indicator}"
 
-            tab_separator           "#[fg=#66669A] @ "
+            tab_separator           "   "
 
-            tab_rename              "#[fg=${colors.cyan}g] {name} {floating_indicator} "
+            tab_rename              "#[fg=${colors.cyan}] {name} {floating_indicator} "
 
             tab_sync_indicator       "<> "
             tab_fullscreen_indicator "[] "
@@ -123,11 +122,18 @@ let
           }
         }
       }
+      tab name="Code" focus=true {
+        pane split_direction="vertical" {
+          pane name="Kak" command="${pkgs.kakoune}/bin/kak" size="60%"
+          pane name="term"
+        }
+      }
     }
     '';
   };
   zellijConfig = pkgs.runCommand "zellij-config" {} ''
     mkdir -p $out/layouts
+
     cat > $out/layouts/ide.kdl <<EOF
     ${configs."ide.kdl"}
     EOF
@@ -135,11 +141,10 @@ let
     ${configs."config.kdl"}
     EOF
   '';
-in
-  stdenv.mkDerivation {
+in stdenv.mkDerivation {
     name = "zellij-config";
     buildCommand = ''
-      mkdir -p $out/share/zellij
-      cp -r ${zellijConfig}/* $out/share/zellij/
+      mkdir -p $out
+      cp -r ${zellijConfig}/* $out
     '';
   }

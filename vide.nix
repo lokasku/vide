@@ -9,14 +9,16 @@
 
 let
   zellijConfig = callPackage ./zellij.nix { inherit zjstatus; };
+  kakouneConfig = callPackage ./kakoune.nix {};
 in
   stdenv.mkDerivation rec {
     name = "vide";
 
-    buildInputs = [ pkgs.zellij zellijConfig ];
+    buildInputs = [ pkgs.zellij zellijConfig kakouneConfig ];
 
     src = writeShellScript "vide" ''
-      export ZELLIJ_CONFIG_DIR=${zellijConfig}/share/zellij/
+      export KAKOUNE_CONFIG_DIR=${kakouneConfig}
+      export ZELLIJ_CONFIG_DIR=${zellijConfig}
       ${pkgs.zellij}/bin/zellij
     '';
 
