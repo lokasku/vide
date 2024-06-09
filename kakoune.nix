@@ -2,9 +2,11 @@
 , lib
 , stdenv
 }:
+
 let
   colors = {
     white = "rgb:ffffff";
+    whitedim = "rgb:c0c0c0";
     black = "rgb:000000";
     orange = "rgb:ff9f0a";
     red = "rgb:ff6961";
@@ -13,12 +15,15 @@ let
     magenta = "rgb:da9fff";
     cyan = "rgb:70d7ff";
 
-    green5 = "rgb:25a244";
-    green4 = "rgb:2dc653";
-    green3 = "rgb:4ad66d";
-    green2 = "rgb:6ede8a";
-    green1 = "rgb:92e6a7";
-    green0 = "rgb:b7efc5";
+    gray0 = "rgb:8e8e93";
+    gray1 = "rgb:636363";
+    
+    c5 = "rgb:9b99ff";
+    c4 = "rgb:70d7ff";
+    c3 = "rgb:9bb3ff";
+    c2 = "rgb:b29bff";
+    c1 = "rgb:cf9fff";
+    c0 = "rgb:da9fff";
 
     sel = "rgba:508aa81f";
     sel2 = "rgba:508aa81f";
@@ -27,8 +32,23 @@ let
   };
   configs = {
     "kakrc" = ''
+
       set-option global tabstop 4
       set-option global indentwidth 4
+      set-option global modelinefmt '%val{bufname} %val{cursor_line}:%val{cursor_char_column} {{context_info}} {{mode_info}}'
+      set-option global ui_options \
+        terminal_assistant=clippy \
+        terminal_status_on_top=false \
+        terminal_set_title=false \
+        terminal_enable_mouse=true \
+        terminal_change_colors=true \
+        terminal_padding_char="·" \
+      
+      define-command broot %{ 
+        nop %sh{
+          ${pkgs.zellij}/bin/zellij run --close-on-exit --floating --name select -- ${pkgs.broot}/bin/broot
+        }
+      }
 
       addhl global/ show-whitespaces -nbsp "·" -tabpad "·" -indent "" -tab "-" -spc "·"
       addhl global/ number-lines -hlcursor -separator "   "
@@ -49,36 +69,36 @@ let
       set-face global list               default,default
 
       # Markup
-      set-face global value              ${colors.green0},default
+      set-face global value              ${colors.c0},default
       set-face global type               default,default+i
       set-face global variable           default,default
       set-face global module             default,default+b
       set-face global function           default,default+b
-      set-face global string             ${colors.green2},default
-      set-face global keyword            default,default+i
-      set-face global operator           ${colors.green3},default+d
+      set-face global string             ${colors.c2},default
+      set-face global keyword            default,default+bi
+      set-face global operator           ${colors.c3},default+d
       set-face global attribute          default,default
-      set-face global comment            ${colors.green1},default+i
-      set-face global documentation      ${colors.green2},default+bi
-      set-face global meta               ${colors.green4},default
-      set-face global builtin            ${colors.green5},default+b
+      set-face global comment            ${colors.c1},default+i
+      set-face global documentation      ${colors.c2},default+bi
+      set-face global meta               ${colors.c4},default
+      set-face global builtin            ${colors.c5},default+b
 
       # Deprecated?
-      # set-face global error              ${colors.green4},default+c
+      # set-face global error              ${colors.c4},default+c
       # set-face global identifier         default,default
 
       # Interface
       set-face global Default            ${colors.white},default
       set-face global PrimarySelection   default,${colors.sel}
       set-face global SecondarySelection default,${colors.sel2}
-      set-face global PrimaryCursor      ${colors.green4},${colors.sel_cursor}+fg
-      set-face global SecondaryCursor    ${colors.green4},${colors.sel_cursor}+fg
+      set-face global PrimaryCursor      ${colors.c4},${colors.sel_cursor}+fg
+      set-face global SecondaryCursor    ${colors.c4},${colors.sel_cursor}+fg
       set-face global PrimaryCursorEol   ${colors.black},${colors.sel_cursor_eol}+fg
       set-face global SecondaryCursorEol ${colors.black},${colors.sel_cursor_eol}+fg
-      set-face global MenuBackground     ${colors.blue},default
+      set-face global MenuBackground     ${colors.whitedim},default
       set-face global MenuForeground     +r@MenuBackground
       set-face global MenuInfo           Information
-      set-face global Information        ${colors.cyan},default
+      set-face global Information        ${colors.white},default
       set-face global Error              ${colors.red},default
       set-face global DiagnosticError    ${colors.red},default+c
       set-face global DiagnosticWarning  ${colors.orange},default+c
@@ -86,16 +106,16 @@ let
       set-face global StatusLineMode     default,default
       set-face global StatusLineInfo     default,default
       set-face global StatusLineValue    default,default
-      set-face global StatusCursor       ${colors.green4},${colors.sel_cursor}+fg
+      set-face global StatusCursor       ${colors.c4},${colors.sel_cursor}+fg
       set-face global Prompt             default,default
-      set-face global BufferPadding      ${colors.blue},default
+      set-face global BufferPadding      ${colors.gray1},default
       set-face global Builtin            default,default
-      set-face global LineNumbers        ${colors.white},default
+      set-face global LineNumbers        ${colors.gray1},default
       set-face global LineNumberCursor   ${colors.white},default+r
-      set-face global LineNumbersWrapped ${colors.white},default
+      set-face global LineNumbersWrapped ${colors.gray1},default
       set-face global MatchingChar       default,default+u
-      set-face global Whitespace         ${colors.green1},default+d
-      set-face global WrapMarker         ${colors.green1},default+d
+      set-face global Whitespace         ${colors.gray0},default+d
+      set-face global WrapMarker         ${colors.gray0},default+d
       set-face global Markup             default,default
       }
     '';

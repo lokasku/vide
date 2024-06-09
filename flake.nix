@@ -10,7 +10,7 @@
     };
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, zjstatus, ... }: let
+  outputs = inputs @ { self, nixpkgs, zjstatus, ... }: let
 
     systems =  [ "x86_64-linux" "aarch64-linux" "aarch6-darwin" ];
     forAllSystems = f:
