@@ -3,9 +3,11 @@
 , stdenv
 
 , zjstatus
+, helixConfig
 }:
 
 let
+  invokeHelix = "${lib.getExe pkgs.helix} -c ${helixConfig}/config.toml";
   colors = {
     fg = "#f0e6ff";
     bg = "#161616";
@@ -123,7 +125,9 @@ let
       }
       tab name="Code" focus=true {
         pane split_direction="vertical" {
-          pane name="Kak" command="${pkgs.kakoune}/bin/kak" size="60%"
+          pane name="Hex" command="${lib.getExe pkgs.helix}" size="60%" {
+            args "-c" "${helixConfig}/config.toml" 
+          }
           pane name="term"
         }
       }

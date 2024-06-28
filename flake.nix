@@ -28,10 +28,10 @@
         apps = forAllSystems (pkgs: {
           default = {
             type = "app";
-            program = "${pkgs.callPackage ./vide.nix {
+            program = pkgs.lib.getExe (pkgs.callPackage ./vide.nix {
               inherit pkgs;
               zjstatus = zjstatusForAllSystems pkgs.system;
-            }}/bin/vide";
+            });
           };
         });
         

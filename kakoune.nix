@@ -50,7 +50,7 @@ let
         }
       }
 
-      addhl global/ show-whitespaces -nbsp "·" -tabpad "·" -indent "" -tab "-" -spc "·"
+      # addhl global/ show-whitespaces -nbsp "·" -tabpad "·" -indent "" -tab "-" -spc "·"
       addhl global/ number-lines -hlcursor -separator "   "
       addhl global/ wrap -word -indent
 
