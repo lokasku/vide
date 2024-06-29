@@ -32,7 +32,11 @@ let
   };
   configs = {
     "kakrc" = ''
+      # LSP
+      eval %sh{${lib.getExe pkgs.kak-lsp} --config ./kaklsp/kak-lsp.toml --kakoune -s $kak_session}
+      lsp-enable
 
+      # Misc
       set-option global tabstop 4
       set-option global indentwidth 4
       set-option global modelinefmt '%val{bufname} %val{cursor_line}:%val{cursor_char_column} {{context_info}} {{mode_info}}'
@@ -51,7 +55,7 @@ let
       }
 
       # addhl global/ show-whitespaces -nbsp "·" -tabpad "·" -indent "" -tab "-" -spc "·"
-      addhl global/ number-lines -hlcursor -separator "   "
+      addhl global/ number-lines -separator "  "
       addhl global/ wrap -word -indent
 
       colorscheme theme
@@ -72,12 +76,12 @@ let
       set-face global value              ${colors.c0},default
       set-face global type               default,default+i
       set-face global variable           default,default
-      set-face global module             default,default+b
+      set-face global module             ${colors.cyan},default+b
       set-face global function           default,default+b
       set-face global string             ${colors.c2},default
       set-face global keyword            default,default+bi
       set-face global operator           ${colors.c3},default+d
-      set-face global attribute          default,default
+      set-face global attribute          ${colors.cyan},default
       set-face global comment            ${colors.c1},default+i
       set-face global documentation      ${colors.c2},default+bi
       set-face global meta               ${colors.c4},default
@@ -95,8 +99,8 @@ let
       set-face global SecondaryCursor    ${colors.c4},${colors.sel_cursor}+fg
       set-face global PrimaryCursorEol   ${colors.black},${colors.sel_cursor_eol}+fg
       set-face global SecondaryCursorEol ${colors.black},${colors.sel_cursor_eol}+fg
-      set-face global MenuBackground     ${colors.whitedim},default
-      set-face global MenuForeground     +r@MenuBackground
+      set-face global MenuBackground     ${colors.white},default
+      set-face global MenuForeground     ${colors.white},default
       set-face global MenuInfo           Information
       set-face global Information        ${colors.white},default
       set-face global Error              ${colors.red},default
@@ -110,9 +114,9 @@ let
       set-face global Prompt             default,default
       set-face global BufferPadding      ${colors.gray1},default
       set-face global Builtin            default,default
-      set-face global LineNumbers        ${colors.gray1},default
-      set-face global LineNumberCursor   ${colors.white},default+r
-      set-face global LineNumbersWrapped ${colors.gray1},default
+      set-face global LineNumbers        default,default
+      set-face global LineNumberCursor   default,${colors.red}+r
+      set-face global LineNumbersWrapped default,default
       set-face global MatchingChar       default,default+u
       set-face global Whitespace         ${colors.gray0},default+d
       set-face global WrapMarker         ${colors.gray0},default+d

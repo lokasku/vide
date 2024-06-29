@@ -8,8 +8,8 @@
 }:
 
 let
-  zellijConfig = callPackage ./zellij.nix { inherit zjstatus helixConfig; };
   helixConfig = callPackage ./helix.nix {};
+  zellijConfig = callPackage ./zellij.nix { inherit zjstatus helixConfig; };
 in
   stdenv.mkDerivation rec {
     name = "vide";

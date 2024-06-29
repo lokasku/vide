@@ -7,7 +7,6 @@
 }:
 
 let
-  invokeHelix = "${lib.getExe pkgs.helix} -c ${helixConfig}/config.toml";
   colors = {
     fg = "#f0e6ff";
     bg = "#161616";
