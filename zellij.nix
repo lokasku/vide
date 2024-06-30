@@ -59,6 +59,20 @@ let
     '';
 
     "ide.kdl" = ''
+    keybinds {
+      normal {
+        bind "Ctrl k" { CloseFocus; }
+        bind "Ctrl g" {
+          Run "${lib.getExe pkgs.lazygit}";
+          SwitchToMode "Normal";
+          TogglePaneEmbedOrFloating;
+          Resize "Increase Left"; Resize "Increase Left"; Resize "Increase Left"; Resize "Increase Left";
+          Resize "Increase Right"; Resize "Increase Right"; Resize "Increase Right"; Resize "Increase Right";
+          Resize "Increase Down"; Resize "Increase Down"; Resize "Increase Down"; Resize "Increase Down";
+          Resize "Increase Up"; Resize "Increase Up"; Resize "Increase Up"; Resize "Increase Up";
+        }
+      }
+    }
     layout {
       swap_tiled_layout name="horizontal" borderless=true {
         tab max_panes=2 {
