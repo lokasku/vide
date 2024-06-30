@@ -5,7 +5,7 @@ Nix-powered modal IDE composed of individual tools, namely :
 - [Helix](https://helix-editor.com/)
 - [Kakoune](https://kakoune.org/)
 ## Motivation
-Thanks to Nix flakes, one can directly invoke nix run `github:lokasku/vide` from any computer with Nix installed, using the flake and nix-command experimental features. The IDE will run and leave no trace after garbage collection. The configuration is completely standalone, ensuring you get the exact same interface regardless of any potential XDG configurations.
+Thanks to Nix flakes, one can directly invoke `nix run github:lokasku/vide` from any computer with Nix installed, using the flakes and nix-command experimental features. The IDE will run and leave no trace after garbage collection. The configuration is completely standalone, ensuring you get the exact same interface regardless of any potential XDG configurations.
 
 This is particularly advantageous if you often have to switch computers, as it eliminates the need to reinstall and reconfigure your entire IDE setup. Since it is modal, the only additional requirement besides Nix is a terminal application, which is available on virtually all operating systems.
 
@@ -80,4 +80,4 @@ While the primary purpose is to be able to run the IDE by URL as shown above, it
   }
 ```
 ## Credits
-This project was inspired by [Felko's Vide](https://github.com/felko/vide) project. The original idea of using Nix to combine various tools belongs to him. Thank you to Felko for sharing this concept.
+This project was inspired by [Felko's Vide](https://github.com/felko/vide) project. The original idea of using Nix to combine various tools belongs to him. Thank you Felko for sharing this concept.
