@@ -1,4 +1,6 @@
 # Vide
+[![asciicast](https://asciinema.org/a/666262.svg)](https://asciinema.org/a/666262)
+
 Nix-powered modal IDE composed of individual tools, namely :
 - [Zellij](https://zellij.dev)
 - [Lazygit](https://github.com/jesseduffield/lazygit)
