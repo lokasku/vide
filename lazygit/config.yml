@@ -33,7 +33,7 @@ gui:
   sidePanelWidth: 0.3333
 
   # If true, increase the height of the focused side window; creating an accordion effect.
-  expandFocusedSidePanel: false
+  expandFocusedSidePanel: true
 
   # The weight of the expanded side panel, relative to the other panels. 2 means
   # twice as tall as the other panels. Only relevant if `expandFocusedSidePanel` is true.
@@ -73,7 +73,7 @@ gui:
 
     # Border color of non-focused windows
     inactiveBorderColor:
-      - default
+      - '#636363'
 
     # Border color of focused window when searching in that window
     searchingActiveBorderColor:
@@ -133,7 +133,7 @@ gui:
   showRandomTip: true
 
   # If true, show the command log
-  showCommandLog: true
+  showCommandLog: false
 
   # If true, show the bottom line that contains keybinding info and useful buttons. If false, this line will be hidden except to display a loader for an in-progress action.
   showBottomLine: true
@@ -147,10 +147,10 @@ gui:
   # Nerd fonts version to use.
   # One of: '2' | '3' | empty string (default)
   # If empty, do not show icons.
-  nerdFontsVersion: ""
+  nerdFontsVersion: "3"
 
   # If true (default), file icons are shown in the file views. Only relevant if NerdFontsVersion is not empty.
-  showFileIcons: true
+  showFileIcons: false
 
   # Length of author name in (non-expanded) commits view. 2 means show initials only.
   commitAuthorShortLength: 2
@@ -178,7 +178,7 @@ gui:
 
   # Default size for focused window. Window size can be changed from within Lazygit with '+' and '_' (but this won't change the default).
   # One of: 'normal' (default) | 'half' | 'full'
-  windowSize: normal
+  windowSize: half
 
   # Window border style.
   # One of 'rounded' (default) | 'single' | 'double' | 'hidden'
@@ -193,16 +193,16 @@ gui:
 
   # How things are filtered when typing '/'.
   # One of 'substring' (default) | 'fuzzy'
-  filterMode: substring
+  filterMode: fuzzy
 
   # Config relating to the spinner.
   spinner:
     # The frames of the spinner animation.
     frames:
-      - '|'
-      - /
-      - '-'
-      - \
+      - '▛'
+      - ▜
+      - '▟'
+      - '▙'
 
     # The "speed" of the spinner in milliseconds.
     rate: 50
@@ -343,7 +343,7 @@ quitOnTopLevelReturn: false
 # Config relating to things outside of Lazygit like how files are opened, copying to clipboard, etc
 os:
   # Command for editing a file. Should contain "{{filename}}".
-  edit: ""
+  edit: "vim {{filename}}"
 
   # Command for editing a file at a given line number. Should contain
   # "{{filename}}", and may optionally contain "{{line}}".
@@ -394,7 +394,7 @@ os:
   readFromClipboardCmd: ""
 
 # If true, don't display introductory popups upon opening Lazygit.
-disableStartupPopups: false
+disableStartupPopups: true
 
 # What to do when opening Lazygit outside of a git repo.
 # - 'prompt': (default) ask whether to initialize a new repo or open in the most recent repo

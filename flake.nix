@@ -37,7 +37,7 @@
         
         devShells = forAllSystems (pkgs: {
           default = pkgs.mkShell {
-            packages = with pkgs; [ nixd blink ];
+            packages = with pkgs; [ nixd ];
           };
         });
       };

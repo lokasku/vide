@@ -66,10 +66,10 @@ let
           Run "${lib.getExe pkgs.lazygit}";
           SwitchToMode "Normal";
           TogglePaneEmbedOrFloating;
-          Resize "Increase Left"; Resize "Increase Left"; Resize "Increase Left"; Resize "Increase Left";
-          Resize "Increase Right"; Resize "Increase Right"; Resize "Increase Right"; Resize "Increase Right";
-          Resize "Increase Down"; Resize "Increase Down"; Resize "Increase Down"; Resize "Increase Down";
-          Resize "Increase Up"; Resize "Increase Up"; Resize "Increase Up"; Resize "Increase Up";
+          Resize "Increase Left"; Resize "Increase Left"; Resize "Increase Left"; Resize "Increase Left"; Resize "Increase Left";
+          Resize "Increase Right"; Resize "Increase Right"; Resize "Increase Right"; Resize "Increase Right"; Resize "Increase Right";
+          Resize "Increase Down"; Resize "Increase Down"; Resize "Increase Down"; Resize "Increase Down"; Resize "Increase Down";
+          Resize "Increase Up"; Resize "Increase Up"; Resize "Increase Up"; Resize "Increase Up"; Resize "Increase Up";
         }
       }
     }
