@@ -18,11 +18,14 @@
     zjstatusForAllSystems = system: zjstatus.packages.${system}.default;
     in
       { 
-        packages = forAllSystems (pkgs: {
-          default = pkgs.callPackage ./vide.nix {
+        packages = forAllSystems (pkgs:
+          let vide = pkgs.callPackage ./vide.nix {
             inherit pkgs;
             zjstatus = zjstatusForAllSystems pkgs.system;
           };
+          in { 
+            default = vide;
+            vide = vide;
         });
 
         apps = forAllSystems (pkgs: {
