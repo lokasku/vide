@@ -18,7 +18,6 @@ in
     src = writeShellScript "vide" ''
       export ZELLIJ_CONFIG_DIR=${zellijConfig}
       export LG_CONFIG_FILE=${lazyGitConfig}/config.yml
-      echo ${lazyGitConfig}
       ${pkgs.zellij}/bin/zellij
     '';
 
