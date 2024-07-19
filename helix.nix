@@ -10,8 +10,6 @@ let
   [editor]
   scrolloff = 10
   line-number = "absolute"
-  cursorline = true
-  cursorcolumn = true
   bufferline = "multiple"
   popup-border = "popup"
 
