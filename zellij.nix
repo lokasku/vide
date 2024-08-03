@@ -138,14 +138,15 @@ let
       }
       tab name="Code" focus=true {
         pane split_direction="vertical" {
-          pane name="Hex" command="${lib.getExe pkgs.helix}" size="60%" {
-            args "-c" "${helixConfig}/config.toml" 
-          }
+          pane name="Kak" command="${lib.getExe pkgs.kakoune}" size="60%"
           pane name="term"
         }
       }
     }
     '';
+    # pane name="Hex" command="${lib.getExe pkgs.kakoune}" size="60%" {
+    #   args "-c" "${helixConfig}/config.toml" 
+    # }
   };
   zellijConfig = pkgs.runCommand "zellij-config" {} ''
     mkdir -p $out/layouts

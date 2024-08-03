@@ -1,4 +1,4 @@
-
+file_watch_support = false
 snippet_support = true
 verbosity = 2
 
@@ -51,7 +51,7 @@ command = "crystalline"
 [language_server.css-language-server]
 filetypes = ["css"]
 roots = ["package.json", ".git", ".hg"]
-command = "vscode-css-languageserver"
+command = "vscode-css-language-server"
 args = ["--stdio"]
 
 # [language_server.deno-lsp]
@@ -67,7 +67,7 @@ args = ["--stdio"]
 [language_server.less-language-server]
 filetypes = ["less"]
 roots = ["package.json", ".git", ".hg"]
-command = "vscode-css-languageserver"
+command = "vscode-css-language-server"
 args = ["--stdio"]
 
 
@@ -81,13 +81,23 @@ settings_section = "metals"
 [language_server.metals.settings.metals]
 icons = "unicode"
 isHttpEnabled = true
-statusBarProvider = "log-message"
+statusBarProvider = "show-message"
 compilerOptions = { overrideDefFormat = "unicode" }
+inlayHints.hintsInPatternMatch.enable = true
+inlayHints.implicitArguments.enable = true
+inlayHints.implicitConversions.enable = true
+inlayHints.inferredTypes.enable = true
+inlayHints.typeParameters.enable = true
+
+[language_server.nil]
+filetypes = ["nix"]
+command = "nil"
+roots = ["flake.nix", "shell.nix", ".git", ".hg"]
 
 [language_server.scss-language-server]
 filetypes = ["scss"]
 roots = ["package.json", ".git", ".hg"]
-command = "vscode-css-languageserver"
+command = "vscode-css-language-server"
 args = ["--stdio"]
 
 [language_server.dls]
@@ -100,7 +110,10 @@ command = "dls"
 filetypes = ["dart"]
 roots = ["pubspec.yaml", ".git", ".hg"]
 command = "sh"
-args = ["-c", "dart $(dirname $(command -v dart))/snapshots/analysis_server.dart.snapshot --lsp"]
+args = [
+    "-c",
+    "dart $(dirname $(command -v dart))/snapshots/analysis_server.dart.snapshot --lsp",
+]
 
 [language_server.jdtls]
 filetypes = ["java"]
@@ -152,6 +165,14 @@ command = "gopls"
 [language_server.gopls.settings.gopls]
 # See https://github.com/golang/tools/blob/master/gopls/doc/settings.md
 # "build.buildFlags" = []
+hints.assignVariableTypes = true
+hints.compositeLiteralFields = true
+hints.compositeLiteralTypes = true
+hints.constantValues = true
+hints.functionTypeParameters = true
+hints.parameterNames = true
+hints.rangeVariableTypes = true
+"ui.completion.usePlaceholders" = true
 
 [language_server.haskell-language-server]
 filetypes = ["haskell"]
@@ -166,7 +187,7 @@ settings_section = "_"
 [language_server.html-language-server]
 filetypes = ["html"]
 roots = ["package.json"]
-command = "vscode-html-languageserver"
+command = "vscode-html-language-server"
 args = ["--stdio"]
 settings_section = "_"
 [language_server.html-language-server.settings._]
@@ -185,7 +206,7 @@ storagePath = "/tmp/intelephense"
 [language_server.json-language-server]
 filetypes = ["json"]
 roots = ["package.json"]
-command = "vscode-json-languageserver"
+command = "vscode-json-language-server"
 args = ["--stdio"]
 
 # Requires Julia package "LanguageServer"
@@ -250,6 +271,12 @@ roots = [".marksman.toml"]
 command = "marksman"
 args = ["server"]
 
+# [language_server.zk]
+# filetypes = ["markdown"]
+# roots = [".zk"]
+# command = "zk"
+# args = ["lsp"]
+
 [language_server.nimlsp]
 filetypes = ["nim"]
 roots = ["*.nimble", ".git", ".hg"]
@@ -258,13 +285,23 @@ command = "nimlsp"
 [language_server.ocamllsp]
 filetypes = ["ocaml"]
 # Often useful to simply do a `touch dune-workspace` in your project root folder if you have problems with root detection
-roots = ["dune-workspace", "dune-project", "Makefile", "opam", "*.opam", "esy.json", ".git", ".hg", "dune"]
+roots = [
+    "dune-workspace",
+    "dune-project",
+    "Makefile",
+    "opam",
+    "*.opam",
+    "esy.json",
+    ".git",
+    ".hg",
+    "dune",
+]
 command = "ocamllsp"
 
 [language_server.pls]
 filetypes = ["protobuf"]
 roots = [".git", ".hg"]
-command = "pls" # https://github.com/lasorda/protobuf-language-server
+command = "pls"          # https://github.com/lasorda/protobuf-language-server
 
 [language_server.purescript-language-server]
 filetypes = ["purescript"]
@@ -322,9 +359,9 @@ command = "ocamllsp"
 #     "-c",
 #     """
 #         if path=$(rustup which rls 2>/dev/null); then
-#             "$path"
+#             exec "$path"
 #         else
-#             rls
+#             exec rls
 #         fi
 #     """,
 # ]
@@ -333,25 +370,21 @@ command = "ocamllsp"
 # # See https://github.com/rust-lang/rls#configuration
 # # features = []
 
-[language_server.nil]
-filetypes = ["nix"]
-command = "nil"
-roots = ["flake.nix", "shell.nix", ".git", ".hg"]
 
 [language_server.rust-analyzer]
 filetypes = ["rust"]
 roots = ["Cargo.toml"]
 command = "sh"
-args = [
-    "-c",
-    """
+args = ["-c", """
         if path=$(rustup which rust-analyzer 2>/dev/null); then
-            "$path"
+            exec "$path"
         else
-            rust-analyzer
+            exec rust-analyzer
         fi
-    """,
-]
+    """]
+[language_server.rust-analyzer.experimental]
+commands.commands = ["rust-analyzer.runSingle"]
+hoverActions = true
 [language_server.rust-analyzer.settings.rust-analyzer]
 # See https://rust-analyzer.github.io/manual.html#configuration
 # cargo.features = []
@@ -366,6 +399,18 @@ settings_section = "_"
 [language_server.solargraph.settings._]
 # See https://github.com/castwide/solargraph/blob/master/lib/solargraph/language_server/host.rb
 # diagnostics = false
+
+[language_server.svelte-language-server]
+filetypes = ["svelte"]
+roots = ["package.json", "tsconfig.json", "jsconfig.json", ".git", ".hg"]
+command = "svelteserver"
+args = ["--stdio"]
+
+[language_server.taplo]
+filetypes = ["toml"]
+roots = [".git", ".hg"]
+command = "taplo"
+args = ["lsp", "stdio"]
 
 [language_server.terraform-ls]
 filetypes = ["terraform"]
@@ -414,6 +459,12 @@ settings_section = "_"
 # quotePreference = "double"
 # typescript.format.semicolons = "insert"
 
+# [language_server.biome]
+# filetypes = ["typescript", "javascript"]
+# roots = ["biome.json", "package.json", "tsconfig.json", "jsconfig.json", ".git", ".hg"]
+# command = "biome"
+# args = ["lsp-proxy"]
+
 # [language_server.eslint]
 # filetypes = ["javascript", "typescript"]
 # roots = [".eslintrc", ".eslintrc.json"]
@@ -458,15 +509,21 @@ command = "zls"
 # - Rust Analyzer: https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/ide/src/syntax_highlighting.rs
 [semantic_tokens]
 faces = [
-    {face="documentation", token="comment", modifiers=["documentation"]},
-    {face="comment", token="comment"},
-    {face="function", token="function"},
-    {face="keyword", token="keyword"},
-    {face="module", token="namespace"},
-    {face="operator", token="operator"},
-    {face="string", token="string"},
-    {face="type", token="type"},
-    {face="default+d", token="variable", modifiers=["readonly"]},
-    {face="default+d", token="variable", modifiers=["constant"]},
-    {face="variable", token="variable"},
+    { face = "documentation", token = "comment", modifiers = [
+        "documentation",
+    ] },
+    { face = "comment", token = "comment" },
+    { face = "function", token = "function" },
+    { face = "keyword", token = "keyword" },
+    { face = "module", token = "namespace" },
+    { face = "operator", token = "operator" },
+    { face = "string", token = "string" },
+    { face = "type", token = "type" },
+    { face = "default+d", token = "variable", modifiers = [
+        "readonly",
+    ] },
+    { face = "default+d", token = "variable", modifiers = [
+        "constant",
+    ] },
+    { face = "variable", token = "variable" },
 ]

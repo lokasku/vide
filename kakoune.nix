@@ -1,6 +1,7 @@
 { pkgs
 , lib
 , stdenv
+, kakLspConfig
 }:
 
 let
@@ -33,8 +34,17 @@ let
   configs = {
     "kakrc" = ''
       # LSP
-      eval %sh{${lib.getExe pkgs.kak-lsp} --config ./kaklsp/kak-lsp.toml --kakoune -s $kak_session}
+      eval %sh{${lib.getExe pkgs.kak-lsp} --kakoune -s '$kak_session'}
+      set global lsp_cmd "kak-lsp -s %val{session} -vvv --log /tmp/kak-lsp.log"
       lsp-enable
+      # lsp-enable
+      # hook global WinSetOption filetype=(rust|python|ocaml|haskell|nix) %{
+      #   lsp-enable-window
+      # }
+      
+      lsp-inlay-hints-enable global
+      lsp-inlay-diagnostics-enable global
+      lsp-auto-hover-enable global
 
       # Misc
       set-option global tabstop 4
@@ -121,7 +131,6 @@ let
       set-face global Whitespace         ${colors.gray0},default+d
       set-face global WrapMarker         ${colors.gray0},default+d
       set-face global Markup             default,default
-      }
     '';
   };
   kakouneConfig = pkgs.runCommand "kakoune-config" {} ''

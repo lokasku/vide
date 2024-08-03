@@ -5,7 +5,7 @@
 
 let
   config = ''
-  theme = "base16_transparent"
+  theme = "dracula_at_night"
 
   [editor]
   scrolloff = 10
