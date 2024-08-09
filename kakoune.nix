@@ -34,14 +34,20 @@ let
   configs = {
     "kakrc" = ''
       # LSP
-      eval %sh{${lib.getExe pkgs.kak-lsp} --kakoune -s '$kak_session'}
+      eval %sh{${lib.getExe pkgs.kak-lsp} --config '${kakLspConfig}' --kakoune -s '$kak_session'}
       set global lsp_cmd "kak-lsp -s %val{session} -vvv --log /tmp/kak-lsp.log"
       lsp-enable
+
       # lsp-enable
       # hook global WinSetOption filetype=(rust|python|ocaml|haskell|nix) %{
       #   lsp-enable-window
       # }
       
+      set-option global lsp_diagnostic_line_error_sign ''
+      set-option global lsp_diagnostic_line_warning_sign ''
+      set-option global lsp_diagnostic_line_info_sign ''
+      set-option global lsp_diagnostic_line_hint_sign ''
+
       lsp-inlay-hints-enable global
       lsp-inlay-diagnostics-enable global
       lsp-auto-hover-enable global
