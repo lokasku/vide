@@ -25,7 +25,7 @@ in
     # echo ${lib.getExe pkgs.kak-lsp} --help
     src = writeShellScript "vide" ''
       export ZELLIJ_CONFIG_DIR=${zellijConfig}
-      export LG_CONFIG_FILE=${lazyGitConfig}
+      cp ${lazyGitConfig} ~/.config/lazygit/config.yml
       ${pkgs.zellij}/bin/zellij
     '';
 
