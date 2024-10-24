@@ -1,31 +1,31 @@
-{ pkgs
-, lib
-, stdenv
-}:
-
-let
+{
+  pkgs,
+  lib,
+  stdenv,
+}: let
   config = ''
-  theme = "dracula_at_night"
+    theme = "dracula_at_night"
 
-  [editor]
-  scrolloff = 10
-  line-number = "absolute"
-  bufferline = "multiple"
-  popup-border = "popup"
+    [editor]
+    scrolloff = 10
+    line-number = "absolute"
+    bufferline = "multiple"
+    popup-border = "popup"
 
-  [editor.statusline]
-  left = ["mode", "spinner"]
-  center = ["file-name", "file-modification-indicator"]
-  right = ["diagnostics", "read-only-indicator", "file-type", "register", "position", "file-encoding"]
+    [editor.statusline]
+    left = ["mode", "spinner"]
+    center = ["file-name", "file-modification-indicator"]
+    right = ["diagnostics", "read-only-indicator", "file-type", "register", "position", "file-encoding"]
   '';
   helixConfig = pkgs.runCommand "helix-config" {} ''
-  mkdir -p $out
+    mkdir -p $out
 
-  cat > $out/config.toml <<EOF
-  ${config}
-  EOF
+    cat > $out/config.toml <<EOF
+    ${config}
+    EOF
   '';
-in stdenv.mkDerivation {
+in
+  stdenv.mkDerivation {
     name = "helix-config";
     buildCommand = ''
       mkdir -p $out

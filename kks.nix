@@ -1,16 +1,24 @@
-{ stdenv
-, fetchurl
+{
+  src,
+  stdenv,
+  buildGoModule,
 }:
-
-stdenv.mkDerivation {
+buildGoModule rec {
   pname = "kks";
-  version = "0.3.8";
-  src = fetchurl {
-    url = "https://github.com/kkga/kks/archive/refs/tags/v0.3.8.tar.gz";
-    sha256 = "sha256-AGtEwNay9XJ5HlJe7Rhtb4QjyeuBGG7VdE771gPt2sg=";
-  };
-  buildPhase = ''
+  version = "v0.3.8";
+  inherit src;
+
+  vendorHash = "sha256-E4D9FGTpS9NkZy6tmnuI/F4dnO9bv8MVaRstxVPvEfo=";
+  subPackages = ["."];
+
+  ldflags = ["-X main.version=${version}" "-X main.buildSource=nix"];
+
+  postInstall = ''
     mkdir -p $out/bin
     cp -r $PWD/scripts/kks-* $out/bin
   '';
+
+  meta = {
+    mainProgram = "kks";
+  };
 }

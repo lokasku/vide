@@ -1,8 +1,7 @@
-{ pkgs
-, stdenv
-}:
-
-let
+{
+  pkgs,
+  stdenv,
+}: let
   brootConfig = pkgs.runCommand "broot-config" {} ''
     mkdir -p $out/config
 
@@ -10,7 +9,8 @@ let
     # hello
     EOF
   '';
-in stdenv.mkDerivation {
+in
+  stdenv.mkDerivation {
     name = "broot-config";
     buildCommand = ''
       mkdir -p $out

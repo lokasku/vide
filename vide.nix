@@ -1,32 +1,28 @@
-{ stdenv
-, pkgs
-, lib
-, writeShellScript
-, callPackage
-
-, zjstatus
-}:
-
-let
-  # kakLspConfig = ./kak-lsp/kak-lsp.toml;
-  # kakouneConfig = callPackage ./kakoune.nix { inherit kakLspConfig; };
+{
+  stdenv,
+  pkgs,
+  lib,
+  writeShellScript,
+  callPackage,
+  zjstatus,
+  kks-source,
+}: let
+  kakLsp = callPackage ./kaklsp.nix {};
+  kakouneConfig = callPackage ./kakoune.nix {inherit kakLsp kks;};
   brootConfig = callPackage ./broot.nix {};
-  # kks = callPackage ./kks.nix {};
-  helixConfig = callPackage ./helix.nix {};
-  zellijConfig = callPackage ./zellij.nix { inherit zjstatus helixConfig; };
+  kks = callPackage ./kks.nix {src = kks-source;};
+  zellijConfig = callPackage ./zellij.nix {inherit zjstatus kakouneConfig;};
   lazyGitConfig = ./lazygit/config.yml;
 in
   stdenv.mkDerivation rec {
     name = "vide";
 
-    # export KAKOUNE_CONFIG_DIR=${kakouneConfig}
-    # export BROOT_CONFIG_DIR=${brootConfig}
-    # echo ${kakLspConfig}
-    # echo ${lib.getExe pkgs.kak-lsp} --help
     src = writeShellScript "vide" ''
       export ZELLIJ_CONFIG_DIR=${zellijConfig}
-      cp ${lazyGitConfig} ~/.config/lazygit/config.yml
-      ${pkgs.zellij}/bin/zellij
+      export KAKOUNE_CONFIG_DIR=${kakouneConfig}
+      export BROOT_CONFIG_DIR=${brootConfig}
+      export LG_CONFIG_FILE=${lazyGitConfig}
+      ${lib.getExe pkgs.zellij}
     '';
 
     installPhase = ''
