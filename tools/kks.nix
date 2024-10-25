@@ -1,9 +1,8 @@
 {
   src,
-  stdenv,
-  buildGoModule,
+  pkgs,
 }:
-buildGoModule rec {
+pkgs.buildGoModule rec {
   pname = "kks";
   version = "v0.3.8";
   inherit src;

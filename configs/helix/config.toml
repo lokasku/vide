@@ -1,0 +1,19 @@
+theme = "dracula_at_night"
+
+[editor]
+scrolloff = 10
+line-number = "absolute"
+bufferline = "multiple"
+popup-border = "popup"
+
+[editor.statusline]
+left = ["mode", "spinner"]
+center = ["file-name", "file-modification-indicator"]
+right = [
+    "diagnostics",
+    "read-only-indicator",
+    "file-type",
+    "register",
+    "position",
+    "file-encoding",
+]

@@ -21,30 +21,38 @@
     kks-source,
     ...
   }: let
-    systems = ["x86_64-linux" "aarch64-linux" "aarch6-darwin"];
+    systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin"];
     forAllSystems = f:
       nixpkgs.lib.genAttrs systems (system: f nixpkgs.legacyPackages.${system});
-    zjstatusForAllSystems = system: zjstatus.packages.${system}.default;
+
+    vide = pkgs: let
+      kakLsp = pkgs.callPackage ./tools/kaklsp.nix {};
+      kks = pkgs.callPackage ./tools/kks.nix {src = kks-source;};
+      kakouneConfig = pkgs.callPackage ./configs/kakoune {
+        inherit kakLsp kks;
+        selectFile = pkgs.callPackage ./scripts/select-file.nix {inherit kks;};
+      };
+      brootConfig = pkgs.callPackage ./configs/broot {};
+      zellijConfig = pkgs.callPackage ./configs/zellij {
+        zjstatus = zjstatus.packages.${pkgs.system}.default;
+      };
+      lazyGitConfig = ./configs/lazygit/config.yml;
+    in
+      pkgs.callPackage ./default.nix {
+        inherit kakLsp kks kakouneConfig brootConfig zellijConfig lazyGitConfig;
+      };
   in {
     formatter = forAllSystems (pkgs: pkgs.alejandra);
 
-    packages = forAllSystems (pkgs: let
-      vide = pkgs.callPackage ./vide.nix {
-        inherit pkgs kks-source;
-        zjstatus = zjstatus.packages.${pkgs.system}.default;
-      };
-    in {
-      default = vide;
-      vide = vide;
+    packages = forAllSystems (pkgs: {
+      default = vide pkgs;
+      vide = vide pkgs;
     });
 
     apps = forAllSystems (pkgs: {
       default = {
         type = "app";
-        program = pkgs.lib.getExe (pkgs.callPackage ./vide.nix {
-          inherit pkgs kks-source;
-          zjstatus = zjstatus.packages.${pkgs.system}.default;
-        });
+        program = pkgs.lib.getExe (vide pkgs);
       };
     });
 
