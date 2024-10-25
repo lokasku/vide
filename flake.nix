@@ -58,7 +58,7 @@
 
     devShells = forAllSystems (pkgs: {
       default = pkgs.mkShell {
-        packages = with pkgs; [nil blink kakoune];
+        packages = with pkgs; [nil blink kakoune broot (pkgs.callPackage ./tools/kks.nix {src = kks-source;})];
       };
     });
   };

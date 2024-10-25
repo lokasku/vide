@@ -1,7 +1,5 @@
-{}: let
-  conf = ./conf.hjson;
-  verbs = ./verbs.hjson;
-  theme = ./theme.hjson;
-in {
-  inherit conf verbs theme;
+{
+  conf = builtins.readFile ./conf.hjson;
+  verbs = builtins.readFile ./verbs.hjson;
+  theme = builtins.readFile ./theme.hjson;
 }

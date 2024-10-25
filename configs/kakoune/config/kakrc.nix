@@ -32,15 +32,9 @@
   terminal_change_colors=true \
   terminal_padding_char="·" \
 
-  define-command broot %{
-      nop %sh{
-          ${pkgs.zellij}/bin/zellij run --close-on-exit --floating --name select -- ${pkgs.broot}/bin/broot
-      }
-  }
-
   define-command -docstring 'Select a file to open' file-select %{
       evaluate-commands %sh{
-          ${pkgs.zellij}/bin/zellij run --close-on-exit --floating --name select -- ${selectFile}/bin/select-file cool thanks "$kak_buffile"
+          ${pkgs.zellij}/bin/zellij run --close-on-exit --floating --name select -- ${selectFile}/bin/select-file session0 client0 "$kak_buffile"
       }
   }
 
@@ -66,8 +60,8 @@
   addhl global/ number-lines -separator "  "
   addhl global/ wrap -word -indent
 
-  rename-client thanks
-  rename-session cool
+  rename-session session0
+  rename-client client0
 
   colorscheme theme
 ''

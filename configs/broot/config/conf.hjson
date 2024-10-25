@@ -119,6 +119,9 @@ special_paths: {
         list: "always",
         sum: "never"
     }
+    "**/.git": hide
+    "**/.direnv": hide
+    "/nix/store": no-enter
     # "~/useless": { "show": "never" }
     # "~/my-link-I-want-to-explore": { "list": "always" }
 }
@@ -130,7 +133,7 @@ special_paths: {
 # to cancel (for example when you just opened broot), uncomment
 # this parameter
 #
-# quit_on_last_cancel: true
+quit_on_last_cancel: true
 
 ###############################################################
 # Search modes
@@ -281,7 +284,7 @@ imports: [
             unknown
         ]
         # (un)comment to choose your preferred skin
-        file: skins/theme.hjson
+        file: theme.hjson
         //file: skins/catppuccin-macchiato.hjson
         //file: skins/catppuccin-mocha.hjson
         //file: skins/dark-gruvbox.hjson
@@ -290,10 +293,10 @@ imports: [
     }
 
     # This skin is imported when your terminal is light
-    {
-        luma: light
-        # (un)comment to choose your preferred skin
-        //file: skins/solarized-light.hjson
-        file: skins/white.hjson
-    }
+    // {
+    //     luma: light
+    //     # (un)comment to choose your preferred skin
+    //     //file: skins/solarized-light.hjson
+    //     file: skins/white.hjson
+    // }
 ]

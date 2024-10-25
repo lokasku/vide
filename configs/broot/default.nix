@@ -2,7 +2,7 @@
   pkgs,
   stdenv,
 }: let
-  config = import ./config {};
+  config = import ./config;
 in
   stdenv.mkDerivation {
     name = "broot-config";
