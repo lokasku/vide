@@ -1,6 +1,9 @@
-{ pkgs, kakLsp, kks, selectFile }:
-
-''
+{
+  pkgs,
+  kakLsp,
+  kks,
+  selectFile,
+}: ''
   eval %sh{${kks}/bin/kks init}
   eval %sh{${kakLsp}/bin/kak-lsp --kakoune -s '$kak_session'}
   set global lsp_cmd "${kakLsp}/bin/kak-lsp -s %val{session} -vvv --log /tmp/kak-lsp.log"
@@ -37,13 +40,34 @@
 
   define-command -docstring 'Select a file to open' file-select %{
       evaluate-commands %sh{
-          ${pkgs.zellij}/bin/zellij run --close-on-exit --floating --name select -- ${selectFile}/bin/select-file $kak_session $kak_client "$kak_buffile"
+          ${pkgs.zellij}/bin/zellij run --close-on-exit --floating --name select -- ${selectFile}/bin/select-file cool thanks "$kak_buffile"
+      }
+  }
+
+  define-command edit-or-buffer -params 0.. %{
+      evaluate-commands %sh{
+          if [ -n "$1" ]; then
+              if [ -e "$2" ] || [ "$2" -eq 0 ]; then
+                  for buf in "$kak_buflist"; do
+                      if [ "$buf" == "$1" ]; then
+                          echo buffer "$1"
+                          exit
+                      fi
+                  done
+                  echo edit "$1"
+              else
+                  echo edit "$1" "$2"
+              fi
+          fi
       }
   }
 
   # addhl global/ show-whitespaces -nbsp "·" -tabpad "·" -indent "" -tab "-" -spc "·"
   addhl global/ number-lines -separator "  "
   addhl global/ wrap -word -indent
+
+  rename-client thanks
+  rename-session cool
 
   colorscheme theme
 ''

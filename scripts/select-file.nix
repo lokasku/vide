@@ -11,6 +11,6 @@ pkgs.writeShellScriptBin "select-file" ''
   if [ -n "$selected" ]; then
       ${kks}/bin/kks send -s $1 -c $2 edit-or-buffer "$selected"
   else
-      ${kks}/bin/kks send -s $1 -c $2 echo "no file selected"
+      ${kks}/bin/kks send -s $1 -c $2 echo -debug "Ты идиот"
   fi
 ''
