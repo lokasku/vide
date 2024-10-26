@@ -1,25 +1,30 @@
 # Vide
-[![asciicast](https://asciinema.org/a/666262.svg)](https://asciinema.org/a/666262)
 
 Nix-powered modal IDE composed of individual tools, namely :
+
 - [Zellij](https://zellij.dev)
 - [Lazygit](https://github.com/jesseduffield/lazygit)
-- [Helix](https://helix-editor.com/)
 - [Kakoune](https://kakoune.org/)
+- [Broot](dystroy.org/broot)
+
 ## Motivation
-Thanks to Nix flakes, one can directly invoke `nix run github:lokasku/vide` from any computer with Nix installed, using the flakes and nix-command experimental features. The IDE will run and leave no trace after garbage collection. The configuration is completely standalone, ensuring you get the exact same interface regardless of any potential XDG configurations.
 
-This is particularly advantageous if you often have to switch computers, as it eliminates the need to reinstall and reconfigure your entire IDE setup. Since it is modal, the only additional requirement besides Nix is a terminal application, which is available on virtually all operating systems.
+Leveraging Nix flakes, `nix run github:lokasku/vide` enables a fully reproducible and ephemeral IDE environment on any system with Nix installed, utilizing the _flakes_ and _nix-command_ experimental features. This setup ensures the IDE leaves no trace after garbage collection, with configurations entirely encapsulated to deliver a consistent interface, independent of any existing XDG configurations.
 
-The motivation behind designing this IDE was my frequent need to use preconfigured tools due to the time-consuming process of setting up a new IDE (even creating symlinks from existing dotfiles). This project addresses that challenge, offering a quick and consistent development environment across different machines.
+This solution is ideal for frequent system transitions, eliminating the need for reinstallation or reconfiguration of the IDE. The modal design reduces dependencies to just a terminal application, available on nearly all platforms.
+
+This IDE addresses the challenges of frequent IDE reconfiguration, offering a rapid, uniform development environment that bypasses time-intensive setup, including managing dotfiles and symlinks.
+
 ## Installation
+
 While the primary purpose is to be able to run the IDE by URL as shown above, it's also possible to install it on your system, either declaratively or imperatively.
+
 ### NixOS/nix-darwin
+
 ```nix
 {
   inputs = {
     ...
-
     vide.url = "github:lokasku/vide";
   };
 
@@ -34,6 +39,7 @@ While the primary purpose is to be able to run the IDE by URL as shown above, it
   };
 }
 ```
+
 ```nix
 { pkgs
 , inputs
@@ -46,12 +52,13 @@ While the primary purpose is to be able to run the IDE by URL as shown above, it
     ];
   }
 ```
+
 ### Home Manager
+
 ```nix
 {
   inputs = {
     ...
-
     vide.url = "github:lokasku/vide";
   };
 
@@ -69,6 +76,7 @@ While the primary purpose is to be able to run the IDE by URL as shown above, it
     };
 }
 ```
+
 ```nix
 { pkgs
 , inputs
@@ -81,5 +89,7 @@ While the primary purpose is to be able to run the IDE by URL as shown above, it
     ];
   }
 ```
+
 ## Credits
+
 This project was inspired by [Felko's Vide](https://github.com/felko/vide) project. The original idea of using Nix to combine various tools belongs to him. Thank you Felko for sharing this concept.

@@ -19,8 +19,7 @@
     gray2 = "#3a3a3c";
     gray3 = "#242426";
   };
+in {
   ide = pkgs.callPackage ./ide.nix {inherit colors zjstatus;};
   main = import ./main.nix {inherit colors;};
-in {
-  inherit ide main;
 }

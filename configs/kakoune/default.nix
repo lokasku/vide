@@ -5,7 +5,6 @@
   kks,
   selectFile,
 }: let
-  # selectFile = pkgs.callPackage ../../scripts/select-file.nix {inherit kks;};
   config = pkgs.callPackage ./config {inherit kakLsp kks selectFile;};
 in
   stdenv.mkDerivation {

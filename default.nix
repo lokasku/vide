@@ -22,5 +22,5 @@ in
   script.overrideAttrs (p:
     p
     // {
-      propagatedBuildInputs = [kakoune zellij broot lazygit];
+      buildInputs = [kakoune zellij broot lazygit];
     })
