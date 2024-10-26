@@ -39,7 +39,7 @@
       lazyGitConfig = ./configs/lazygit/config.yml;
     in
       pkgs.callPackage ./default.nix {
-        inherit kakLsp kks kakouneConfig brootConfig zellijConfig lazyGitConfig;
+        inherit kakouneConfig brootConfig zellijConfig lazyGitConfig;
       };
   in {
     formatter = forAllSystems (pkgs: pkgs.alejandra);
@@ -58,7 +58,7 @@
 
     devShells = forAllSystems (pkgs: {
       default = pkgs.mkShell {
-        packages = with pkgs; [nil blink kakoune];
+        packages = with pkgs; [nil blink];
       };
     });
   };

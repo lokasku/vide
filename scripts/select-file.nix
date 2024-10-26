@@ -9,7 +9,7 @@ writeShellScriptBin "select-file" ''
   else
       selected="$(${broot}/bin/broot)"
   fi
-  echo "session: |$1|, client: |$2|, selected: |$selected|"
+  echo "session: |$1|, client: |$2|, selected: |$selected|";
   if [ -n "$selected" ]; then
       ${kks}/bin/kks send -s $1 -c $2 edit "$selected"
   else
