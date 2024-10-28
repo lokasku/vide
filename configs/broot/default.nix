@@ -1,5 +1,4 @@
 {
-  pkgs,
   stdenv,
 }: let
   config = import ./config;

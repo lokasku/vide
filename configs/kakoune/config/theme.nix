@@ -7,7 +7,6 @@ let
   cyan = "rgb:8be9fd";
   aqua = "rgb:689d6a";
   green = "rgb:50fa7b";
-  peach = "rgb:E5C07B";
   orange = "rgb:FFB86C";
   pink = "rgb:F879C6";
   purple = "rgb:BD93F9";
@@ -17,9 +16,6 @@ let
 
   psel = "rgba:27374780";
   ssel = "rgba:1b273380";
-  background = "black";
-  dimmed_background = "gray";
-  foreground = "white";
 in ''
   # For code
   set-face global value ${purple}
