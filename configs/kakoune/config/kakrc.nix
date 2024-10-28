@@ -34,8 +34,7 @@
 
   define-command -docstring 'Select a file to open' file-select %{
       evaluate-commands %sh{
-          ${pkgs.zellij}/bin/zellij run --close-on-exit --floating --name select -- ${selectFile}/bin/select-file session0 client0 "$kak_buffile"
-          echo ${pkgs.zellij}/bin/zellij run --close-on-exit --floating --name select -- ${selectFile}/bin/select-file $kak_session $kak_client "$kak_buffile"
+          zellij run --close-on-exit --name select --in-place -- ${selectFile}/bin/select-file session0 client0 "$kak_buffile"
       }
   }
 

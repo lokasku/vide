@@ -23,7 +23,7 @@
         plugin location="file:${zjstatus}/bin/zjstatus.wasm" {
           format_left   "{mode} #[fg=${colors.magenta},bold] {session}"
           format_center "{tabs}"
-          format_right  "{command_git_branch} {datetime}"
+          format_right  "{notifications} | {command_git_branch} {datetime}"
           format_space  ""
 
           border_enabled  "false"
@@ -43,23 +43,25 @@
           mode_move          "#[bg=${colors.gray3}] {name} "
           mode_prompt        "#[bg=${colors.gray3}] {name} "
           mode_tmux          "#[bg=${colors.gray3}] {name} "
+
           mode_default_to_mode "tmux"
 
           tab_normal              "#[fg=${colors.gray1}] {name} "
           tab_normal_fullscreen   "#[fg=${colors.gray1}] {name} [] "
           tab_normal_sync         "#[fg=${colors.gray1}] {name} <> "
 
-          tab_active              "#[fg=${colors.gray0}] {name} {floating_indicator}"
-          tab_active_fullscreen   "#[fg=${colors.gray0}] {name} {fullscreen_indicator}"
-          tab_active_sync         "#[fg=${colors.gray0}] {name} {sync_indicator}"
+          tab_active              "#[fg=${colors.gray0}] {name}"
+          tab_active_fullscreen   "#[fg=${colors.gray0}] {name}"
+          tab_active_sync         "#[fg=${colors.gray0}] {name}"
 
           tab_separator           "   "
 
-          tab_rename              "#[fg=${colors.cyan}] {name} {floating_indicator} "
+          tab_rename              "#[fg=${colors.cyan}] {name}"
 
-          tab_sync_indicator       ""
-          tab_fullscreen_indicator ""
-          tab_floating_indicator   ""
+          notification_format_unread           "#[fg=${colors.green},blink]  #[fg=#89B4FA,bg=${colors.green}] {message} "
+          notification_format_no_notifications "#[fg=${colors.green},dim]   "
+          notification_show_interval           "10"
+
           command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
           command_git_branch_format      "#[fg=blue] {stdout} "
           command_git_branch_interval    "10"
@@ -73,12 +75,12 @@
     }
     tab name="Code" focus=true {
       pane split_direction="vertical" {
-        pane name="Kak" command="${pkgs.kakoune}/bin/kak" size="60%"
+        pane name="Kak" command="kak" size="60%"
         pane name="Cons"
       }
     }
     tab name="LazyGit" {
-      pane command="${pkgs.lazygit}/bin/lazygit"
+      pane command="lazygit"
     }
   }
 ''

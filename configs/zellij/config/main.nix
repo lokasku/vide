@@ -10,7 +10,6 @@
     }
   }
 
-  theme "default"
 
   themes {
     default {
@@ -28,6 +27,9 @@
     }
   }
 
+  mirror_session true
+  copy_on_select true
   auto_layout true
   default_layout "ide"
+  theme "default"
 ''

@@ -24,7 +24,7 @@
 # you can launch broot with `br -H`).
 # A popular flag is the `g` one which displays git related info.
 #
-# default_flags:
+default_flags: -gh 
 
 ###############################################################
 # Terminal's title
@@ -85,7 +85,7 @@ show_selection_mark: true
 # and set it to false or true if you notice the colors in
 # previewed images are too off.
 #
-# true_colors: false
+true_colors: true
 
 ###############################################################
 # Icons
@@ -93,7 +93,7 @@ show_selection_mark: true
 # (see https://dystroy.org/broot/icons for installation and
 # troubleshooting)
 #
-# icon_theme: vscode
+icon_theme: nerdfont
 
 ###############################################################
 # Special paths
@@ -169,10 +169,13 @@ quit_on_last_cancel: true
 # uncomment and modify the next section if you want to color
 # file name depending on their extension
 #
-# ext_colors: {
-#     png: rgb(255, 128, 75)
-#     rs: yellow
-# }
+ext_colors: {
+    png: rgb(255, 128, 75)
+    rs: rgb(255, 69, 0)
+    nix: rgb(0, 255, 255)
+    toml: rgb(128, 128, 128)
+    yaml: rgb(128, 128, 128)
+}
 
 ###############################################################
 # Max file size for content search
@@ -187,7 +190,7 @@ content_search_max_file_size: 10MB
 #
 # Change this if you sometimes want to have more than 2 panels
 # open
-# max_panels_count: 2
+max_panels_count: 2
 
 ###############################################################
 # Update work dir
@@ -300,3 +303,5 @@ imports: [
     //     file: skins/white.hjson
     // }
 ]
+
+syntax_theme: EightiesDark

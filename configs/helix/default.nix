@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  stdenv,
-}: let
+{stdenv}: let
   config = ./config.toml;
 in
   stdenv.mkDerivation {

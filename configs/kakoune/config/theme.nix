@@ -1,57 +1,81 @@
-''
-  set-face global title              default,default+bu
-  set-face global header             default,default+bi
-  set-face global bold               default,default+b
-  set-face global italic             default,default+i
-  set-face global mono               default,default
-  set-face global block              default,default
-  set-face global link               default,default+u
-  set-face global bullet             default,default
-  set-face global list               default,default
+let
+  black = "default";
+  dark = "rgb:191919";
+  gray = "rgb:5C6370";
+  white = "rgb:f8f8f2";
+  blue = "rgb:66D9EF";
+  cyan = "rgb:8be9fd";
+  aqua = "rgb:689d6a";
+  green = "rgb:50fa7b";
+  peach = "rgb:E5C07B";
+  orange = "rgb:FFB86C";
+  pink = "rgb:F879C6";
+  purple = "rgb:BD93F9";
+  red = "rgb:ff6565";
+  yellow = "rgb:ffe765";
+  dimgray = "rgb:353535";
 
-  # Markup
-  set-face global value              white,default
-  set-face global type               default,default+i
-  set-face global variable           default,default
-  set-face global module             white,default+b
-  set-face global function           default,default+b
-  set-face global string             white,default
-  set-face global keyword            default,default+bi
-  set-face global operator           white,default+d
-  set-face global attribute          white,default
-  set-face global comment            white,default+i
-  set-face global documentation      white,default+bi
-  set-face global meta               white,default
-  set-face global builtin            white,default+b
+  psel = "rgba:27374780";
+  ssel = "rgba:1b273380";
+  background = "black";
+  dimmed_background = "gray";
+  foreground = "white";
+in ''
+  # For code
+  set-face global value ${purple}
+  set-face global type ${cyan}
+  set-face global variable ${orange}
+  set-face global module ${white}
+  set-face global function ${green}
+  set-face global string ${yellow}
+  set-face global keyword ${pink}
+  set-face global operator ${pink}
+  set-face global attribute ${blue}
+  set-face global bracket ${white}+b
+  set-face global arguement ${orange}
+  set-face global comma ${white}
+  set-face global comment ${gray}+i
+  set-face global docstring ${gray}+i
+  set-face global meta ${pink}
+  set-face global builtin ${cyan}
+  set-face global class ${cyan}+b
 
-  # Interface
-  set-face global Default            white,default
-  set-face global PrimarySelection   default,black
-  set-face global SecondarySelection default,black
-  set-face global PrimaryCursor      white,black+fg
-  set-face global SecondaryCursor    white,black+fg
-  set-face global PrimaryCursorEol   black,black+fg
-  set-face global SecondaryCursorEol black,black+fg
-  set-face global MenuBackground     white,default
-  set-face global MenuForeground     white,default
-  set-face global MenuInfo           Information
-  set-face global Information        white,default
-  set-face global Error              black,default
-  set-face global DiagnosticError    black,default+c
-  set-face global DiagnosticWarning  white,default+c
-  set-face global StatusLine         default,default
-  set-face global StatusLineMode     default,default
-  set-face global StatusLineInfo     default,default
-  set-face global StatusLineValue    default,default
-  set-face global StatusCursor       white,black+fg
-  set-face global Prompt             default,default
-  set-face global BufferPadding      black,default
-  set-face global Builtin            default,default
-  set-face global LineNumbers        default,default
-  set-face global LineNumberCursor   default,black+r
-  set-face global LineNumbersWrapped default,default
-  set-face global MatchingChar       default,default+u
-  set-face global Whitespace         black,default+d
-  set-face global WrapMarker         black,default+d
-  set-face global Markup             default,default
+  # For markup
+  set-face global title ${pink}
+  set-face global header ${orange}
+  set-face global bold ${pink}
+  set-face global italic ${purple}
+  set-face global mono ${green}
+  set-face global block ${cyan}
+  set-face global link ${green}
+  set-face global bullet ${green}
+  set-face global list ${white}
+
+  # Builtin faces
+  set-face global Default ${white},${black}
+  # set-face global Default default,default
+  set-face global PrimarySelection default,${psel}
+  set-face global SecondarySelection default,${ssel}
+  set-face global PrimaryCursor ${dark},${purple}
+  set-face global SecondaryCursor ${dark},${aqua}
+  set-face global PrimaryCursorEol ${dark},${orange}
+  set-face global SecondaryCursorEol ${dark},${cyan}
+  set-face global LineNumbers ${gray},${black}
+  set-face global LineNumberCursor ${cyan},${black}+b
+  set-face global LineNumbersWrapped ${gray},${black}+i
+  set-face global MenuForeground ${dark},${white}+b
+  set-face global MenuBackground ${white},${dark}
+  set-face global MenuInfo ${orange},${black}
+  set-face global Information black,white
+  set-face global Error ${red},${black}
+  set-face global StatusLine ${white},${black}
+  set-face global StatusLineMode ${green},${black}
+  set-face global StatusLineInfo ${purple},${black}
+  set-face global StatusLineValue ${orange},${black}
+  set-face global StatusCursor ${white},${blue}
+  set-face global Prompt ${green},${black}
+  set-face global MatchingChar ${black},${blue}
+  set-face global Whitespace ${dimgray},${black}+f
+  set-face global WrapMarker Whitespace
+  set-face global BufferPadding ${gray},${black}
 ''
