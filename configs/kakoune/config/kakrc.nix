@@ -63,5 +63,5 @@
   rename-session session0
   rename-client client0
 
-  colorscheme theme
+  colorscheme default
 ''
