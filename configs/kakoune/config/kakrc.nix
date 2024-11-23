@@ -11,10 +11,10 @@
   lsp-auto-hover-enable
   set global lsp_hover_anchor true
 
-  set-option global lsp_diagnostic_line_error_sign ''
-  set-option global lsp_diagnostic_line_warning_sign ''
-  set-option global lsp_diagnostic_line_info_sign ''
-  set-option global lsp_diagnostic_line_hint_sign ''
+  set-option global lsp_diagnostic_line_error_sign '  '
+  set-option global lsp_diagnostic_line_warning_sign '   '
+  set-option global lsp_diagnostic_line_info_sign '   '
+  set-option global lsp_diagnostic_line_hint_sign '   '
 
   lsp-inlay-hints-enable global
   lsp-inlay-diagnostics-enable global

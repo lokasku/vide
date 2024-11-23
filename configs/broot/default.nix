@@ -1,6 +1,4 @@
-{
-  stdenv,
-}: let
+{stdenv}: let
   config = import ./config;
 in
   stdenv.mkDerivation {

@@ -23,13 +23,13 @@
         plugin location="file:${zjstatus}/bin/zjstatus.wasm" {
           format_left   "{mode} #[fg=${colors.magenta},bold] {session}"
           format_center "{tabs}"
-          format_right  "{notifications} | {command_git_branch} {datetime}"
+          format_right  "{command_git_branch} {datetime}"
           format_space  ""
 
           border_enabled  "false"
           hide_frame_for_single_pane "false"
 
-          mode_normal        "#[bg=${colors.gray3}] {name} "
+          mode_normal        "{name} "
           mode_locked        "#[bg=${colors.gray3}] {name} "
           mode_resize        "#[bg=${colors.gray3}] {name} "
           mode_pane          "#[bg=${colors.gray2}] {name} "
@@ -57,10 +57,6 @@
           tab_separator           "   "
 
           tab_rename              "#[fg=${colors.cyan}] {name}"
-
-          notification_format_unread           "#[fg=${colors.green},blink]  #[fg=#89B4FA,bg=${colors.green}] {message} "
-          notification_format_no_notifications "#[fg=${colors.green},dim]   "
-          notification_show_interval           "10"
 
           command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
           command_git_branch_format      "#[fg=blue] {stdout} "

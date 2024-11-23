@@ -10,7 +10,6 @@
     }
   }
 
-
   themes {
     default {
       fg "${colors.fg}"
