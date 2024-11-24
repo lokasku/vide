@@ -56,7 +56,9 @@
       }
   }
 
-  # addhl global/ show-whitespaces -nbsp "·" -tabpad "·" -indent "" -tab "-" -spc "·"
+  map -docstring "File picker" global normal <space> ': file-select<ret>'
+
+  addhl global/ show-whitespaces -nbsp "·" -tabpad "·" -indent "" -tab "-" -spc " "
   addhl global/ number-lines -separator "  "
   addhl global/ wrap -word -indent
 
