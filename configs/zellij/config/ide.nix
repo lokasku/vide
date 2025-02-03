@@ -2,7 +2,8 @@
   colors,
   zjstatus,
   pkgs,
-}: ''
+}:
+''
   keybinds {
     normal {
       bind "Ctrl k" { CloseFocus; }
@@ -71,8 +72,12 @@
     }
     tab name="Code" focus=true {
       pane split_direction="vertical" {
-        pane name="Kak" command="kak" size="60%"
-        pane name="Cons"
+        pane {
+          name "Kak"
+          size "60%"
+          command "kak"
+        }
+        pane name="Term"
       }
     }
     tab name="LazyGit" {
