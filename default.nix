@@ -17,7 +17,6 @@ writeShellApplication {
     export KAKOUNE_CONFIG_DIR=${kakouneConfig}
     export LG_CONFIG_FILE=${lazyGitConfig}
     export BROOT_CONFIG_DIR=${brootConfig}
-    export INIT_FILE="$1"
 
     zellij
   '';

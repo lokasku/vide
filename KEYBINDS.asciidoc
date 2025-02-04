@@ -1,0 +1,20 @@
+Hyprland Keybindings
+=====================
+
+Window Management
+------------------
+- MOD + f        : Toggle floating mode.
+- MOD + x        : Close window.
+- MOD + h/j/k/l  : Focus window.
+- MOD + SHIFT + h/j/k/l : Move window.
+- MOD + ↓/↑/←/→  : Resize window.
+
+Workspace Management
+---------------------
+- MOD + SHIFT + 0-9 : Move window to workspace.
+- MOD + 0-9         : Switch workspace.
+- MOD + ←/→         : Move between workspaces.
+
+App Launcher
+-------------
+- MOD + SPACE : Launch app.
