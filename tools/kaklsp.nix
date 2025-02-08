@@ -13,8 +13,9 @@ rustPlatform.buildRustPackage rec {
     rev = "v${version}";
     hash = "sha256-nfPc0ccEk+szaTJby56iMmydcDKDq/t1o8tw24c7MfY=";
   };
-
-  cargoHash = "sha256-rUXyPd7YOnmYzTgpSTT7mj2viVrSwa4xB9CFRsQ8EA0=";
+  # sha256-rUXyPd7YOnmYzTgpSTT7mj2viVrSwa4xB9CFRsQ8EA0="
+  cargoHash = "sha256-vwfWU5yJXwvc6KZUjgefqD9rPUQ+9h6ajgIJhElNzSI";
+  useFetchCargoVendor = true;
 
   meta = {
     description = "Kakoune Language Server Protocol Client";
