@@ -283,7 +283,6 @@ imports: [
     # is dark (or when this couldn't be determined)
     {
         luma: [
-            dark
             unknown
         ]
         # (un)comment to choose your preferred skin
@@ -296,12 +295,12 @@ imports: [
     }
 
     # This skin is imported when your terminal is light
-    // {
+    # {
     //     luma: light
     //     # (un)comment to choose your preferred skin
     //     //file: skins/solarized-light.hjson
     //     file: skins/white.hjson
-    // }
+    # }
 ]
 
 syntax_theme: EightiesDark

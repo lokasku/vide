@@ -35,11 +35,12 @@
       brootConfig = pkgs.callPackage ./configs/broot {};
       zellijConfig = pkgs.callPackage ./configs/zellij {
         zjstatus = zjstatus.packages.${pkgs.system}.default;
+        inherit kks;
       };
       lazyGitConfig = ./configs/lazygit/config.yml;
     in
       pkgs.callPackage ./default.nix {
-        inherit kakouneConfig brootConfig zellijConfig lazyGitConfig;
+        inherit kakouneConfig brootConfig zellijConfig lazyGitConfig kks;
       };
   in {
     formatter = forAllSystems (pkgs: pkgs.alejandra);
@@ -58,7 +59,7 @@
 
     devShells = forAllSystems (pkgs: {
       default = pkgs.mkShell {
-        packages = with pkgs; [nil blink];
+        packages = with pkgs; [nil];
       };
     });
   };

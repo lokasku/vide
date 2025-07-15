@@ -5,7 +5,7 @@
   selectFile,
 }: ''
   eval %sh{${kks}/bin/kks init}
-  eval %sh{${kakLsp}/bin/kak-lsp --kakoune -s '$kak_session'}
+  eval %sh{${kakLsp}/bin/kak-lsp --kakoune -s "$kak_session"}
   set global lsp_cmd "${kakLsp}/bin/kak-lsp -s %val{session} -vvv --log /tmp/kak-lsp.log"
   lsp-enable
   lsp-auto-hover-enable
@@ -33,9 +33,9 @@
   terminal_padding_char="·" \
 
   define-command -docstring 'Select a file to open' file-select %{
-      evaluate-commands %sh{
-          zellij run --close-on-exit --name select --in-place -- ${selectFile}/bin/select-file session0 client0 "$kak_buffile"
-      }
+      echo -debug "%val{session}"
+      echo -debug "%val{client}"
+      kks-run zellij run --close-on-exit --name select --in-place -- ${selectFile}/bin/select-file session0 client0 "$kak_buffile"
   }
 
   define-command edit-or-buffer -params 0.. %{
@@ -62,8 +62,8 @@
   addhl global/ number-lines -separator "  "
   addhl global/ wrap -word -indent
 
-  rename-session session0
-  rename-client client0
+  rename-session "session0"
+  rename-client "client0"
 
   colorscheme default
 ''

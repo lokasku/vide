@@ -89,7 +89,3 @@ While the primary purpose is to be able to run the IDE by URL as shown above, it
     ];
   }
 ```
-
-## Credits
-
-This project was inspired by [Felko's Vide](https://github.com/felko/vide) project. The original idea of using Nix to combine various tools belongs to him. Thank you Felko for sharing this concept.

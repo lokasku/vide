@@ -1,6 +1,7 @@
 {
   pkgs,
   zjstatus,
+  kks, # temp
 }: let
   colors = {
     fg = "#f0e6ff";
@@ -20,6 +21,6 @@
     gray3 = "#242426";
   };
 in {
-  ide = pkgs.callPackage ./ide.nix {inherit colors zjstatus;};
+  ide = pkgs.callPackage ./ide.nix {inherit colors zjstatus kks;};
   main = import ./main.nix {inherit colors;};
 }

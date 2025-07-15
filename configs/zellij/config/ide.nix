@@ -1,6 +1,7 @@
 {
   colors,
   zjstatus,
+  kks, # temp
   pkgs,
 }:
 ''
@@ -24,26 +25,26 @@
         plugin location="file:${zjstatus}/bin/zjstatus.wasm" {
           format_left   "{mode} #[fg=${colors.magenta},bold] {session}"
           format_center "{tabs}"
-          format_right  "{command_git_branch} {datetime}"
+          format_right  "{command_git_branch} "
           format_space  ""
 
           border_enabled  "false"
           hide_frame_for_single_pane "false"
 
-          mode_normal        "{name} "
-          mode_locked        "#[bg=${colors.gray3}] {name} "
-          mode_resize        "#[bg=${colors.gray3}] {name} "
-          mode_pane          "#[bg=${colors.gray2}] {name} "
-          mode_tab           "#[bg=${colors.gray3}] {name} "
-          mode_scroll        "#[bg=${colors.gray3}] {name} "
-          mode_enter_search  "#[bg=${colors.gray3}] {name} "
-          mode_search        "#[bg=${colors.gray3}] {name} "
-          mode_rename_tab    "#[bg=${colors.gray3}] {name} "
-          mode_rename_pane   "#[bg=${colors.gray3}] {name} "
-          mode_session       "#[bg=${colors.gray3}] {name} "
-          mode_move          "#[bg=${colors.gray3}] {name} "
-          mode_prompt        "#[bg=${colors.gray3}] {name} "
-          mode_tmux          "#[bg=${colors.gray3}] {name} "
+          mode_normal        "#[bold] {name} "
+          mode_locked        "#[bg=${colors.red}] {name} "
+          mode_resize        " {name} "
+          mode_pane          " {name} "
+          mode_tab           " {name} "
+          mode_scroll        " {name} "
+          mode_enter_search  " {name} "
+          mode_search        " {name} "
+          mode_rename_tab    " {name} "
+          mode_rename_pane   " {name} "
+          mode_session       " {name} "
+          mode_move          " {name} "
+          mode_prompt        " {name} "
+          mode_tmux          " {name} "
 
           mode_default_to_mode "tmux"
 
@@ -57,16 +58,12 @@
 
           tab_separator           "   "
 
-          tab_rename              "#[fg=${colors.cyan}] {name}"
+          tab_rename              "{name}"
 
           command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
           command_git_branch_format      "#[fg=blue] {stdout} "
           command_git_branch_interval    "10"
           command_git_branch_rendermode  "static"
-
-          datetime          "#[fg=#6C7086,bold] {format} "
-          datetime_format   "%l:%-M'%-S"
-          datetime_timezone "Europe/Paris"
         }
       }
     }
@@ -75,7 +72,8 @@
         pane {
           name "Kak"
           size "60%"
-          command "kak"
+          command "${kks}/bin/kks"
+          args "edit"
         }
         pane name="Term"
       }

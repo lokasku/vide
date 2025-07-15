@@ -2,8 +2,9 @@
   pkgs,
   stdenv,
   zjstatus,
+  kks, # temp
 }: let
-  config = pkgs.callPackage ./config {inherit zjstatus;};
+  config = pkgs.callPackage ./config {inherit zjstatus kks;};
 in
   stdenv.mkDerivation {
     name = "zellij-config";

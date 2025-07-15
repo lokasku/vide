@@ -8,10 +8,11 @@
   brootConfig,
   zellijConfig,
   lazyGitConfig,
+  kks # temp
 }:
 writeShellApplication {
   name = "vide";
-  runtimeInputs = [broot kakoune lazygit zellij];
+  runtimeInputs = [broot kakoune lazygit zellij kks];
   text = ''
     export ZELLIJ_CONFIG_DIR=${zellijConfig}
     export KAKOUNE_CONFIG_DIR=${kakouneConfig}
